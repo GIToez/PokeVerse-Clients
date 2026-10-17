@@ -1,0 +1,8 @@
+Module
+  name: game_dailytasks
+  description: PokeVerse tasks window: daily, weekly and hunting boards with their difficulties, rewards and bonuses
+  author: PokeVerse
+  sandboxed: true
+  scripts: [ tasks ]
+  @onLoad: init()
+  @onUnload: terminate()

@@ -1,0 +1,9 @@
+Module
+  name: game_dollcase
+  description: Doll Case
+  author: PokeVerse
+  website: Unk
+  sandboxed: true
+  scripts: [ dollcase ]
+  @onLoad: onInit()
+  @onUnload: onTerminate()

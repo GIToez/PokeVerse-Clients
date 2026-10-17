@@ -1,0 +1,37 @@
+// the clock and the area name on one line at the left of the top menu bar (client_topmenu), or
+// under the HUD when that bar is hidden in game; placed by time.lua
+UIWidget
+  id: timeWindow
+  focusable: false
+  phantom: true
+  size: 300 20
+
+  UIWidget
+    id: timeImage
+    phantom: true
+    size: 18 18
+    image-smooth: true
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+
+  UILabel
+    id: timeLabel
+    phantom: true
+    font: verdana-11px-rounded
+    color: #ffffff
+    text-auto-resize: true
+    anchors.left: timeImage.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 4
+
+  Label
+    id: location
+    phantom: true
+    !text: ''
+    font: verdana-11px-rounded
+    color: #f0d070
+    text-auto-resize: true
+    background-color: alpha
+    anchors.left: timeLabel.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 10

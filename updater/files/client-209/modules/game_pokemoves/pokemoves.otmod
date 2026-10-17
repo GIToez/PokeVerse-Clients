@@ -1,0 +1,9 @@
+Module
+  name: game_pokemoves
+  description: Poke Moves
+  author: PokeVerse
+  website: Unk
+  sandboxed: true
+  scripts: [ pokemoves ]
+  @onLoad: onInit()
+  @onUnload: onTerminate()

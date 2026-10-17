@@ -1,0 +1,9 @@
+Module
+  name: game_tmchoose
+  description: TM Choose
+  author: PokeVerse
+  website: Unk
+  sandboxed: true
+  scripts: [ tmchoose ]
+  @onLoad: onInit()
+  @onUnload: onTerminate()

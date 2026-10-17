@@ -1,0 +1,9 @@
+Module
+  name: game_poll
+  description: Poll
+  author: PokeVerse
+  website: Unk
+  sandboxed: true
+  scripts: [ poll ]
+  @onLoad: onInit()
+  @onUnload: onTerminate()

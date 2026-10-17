@@ -1,0 +1,223 @@
+BattleIcon < UIButton
+  size: 20 20
+  image-rect: 0 0 20 20
+  image-clip: 0 0 20 20
+  checkable: true
+
+  $hover !checked:
+    image-clip: 0 40 20 20
+
+  $checked:
+    image-clip: 0 20 20 20
+
+  $hover checked:
+    image-clip: 0 60 20 20
+
+  $disabled:
+    image-color: #ffffff88
+
+BattlePlayers < BattleIcon
+  image-source: /images/game/battle/battle_players
+
+BattleNPCs < BattleIcon
+  image-source: /images/game/battle/battle_npcs
+
+BattleMonsters < BattleIcon
+  image-source: /images/game/battle/battle_monsters
+
+BattleParty < BattleIcon
+  image-source: /images/game/battle/battle_party
+
+MiniWindow
+  id: battleWindow
+  height: 166
+  image-smooth: false
+  @onOpen: onOpen()
+  @onClose: onClose()
+  &save: true
+   
+  UIWidget
+    id: miniwindowIcon
+    anchors.top: miniwindowHeader.top
+    anchors.left: miniwindowHeader.left
+    margin-top: 2
+    margin-left: 4
+    image-source: /images/game/battle/icon-battlelist
+    image-rect: 0 0 12 12
+    image-smooth: false
+
+  Label
+    id: miniwindowTitle
+    anchors.top: miniwindowHeader.top
+    anchors.left: miniwindowHeader.left
+    anchors.right: miniwindowHeader.right
+    margin-top: 2
+    margin-left: 20
+    margin-right: 50
+    font: verdana-11px-monochrome
+    height: 13
+    color: #ffffffe7
+    !text: tr('Battle List')
+
+  Panel
+    id: filterPanel
+    margin-top: 20
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    height: 22
+    width: 95
+    layout:
+      type: grid
+      flow: true
+      cell-spacing: 5
+      num-columns: 4
+      cell-size: 20 20
+      fit-children: false
+
+    BattlePlayers
+      id: hidePlayers
+      !tooltip: tr('Hide trainers')
+      @onClick: modules.game_battle.onFilterButtonClick(self)
+
+    BattleNPCs
+      id: hideNPCs
+      !tooltip: tr('Hide Npcs')
+      @onClick: modules.game_battle.onFilterButtonClick(self)
+
+    BattleMonsters
+      id: hideMonsters
+      !tooltip: tr('Hide Pokemon')
+      @onClick: modules.game_battle.onFilterButtonClick(self)
+
+    BattleParty
+      id: hideParty
+      !tooltip: tr('Hide party members')
+      @onClick: modules.game_battle.onFilterButtonClick(self)
+
+  Panel
+    height: 18
+    anchors.top: filterPanel.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 0
+
+  HorizontalSeparator
+    id: HorizontalSeparator
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-right: 3
+    margin-top: 0
+    height: 2
+    color: #cccccc
+
+  MiniWindowContents
+    id: contentsPanel
+    anchors.top: prev.bottom
+    margin-top: 6
+
+    Panel
+      id: battlePanel
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.top: parent.top
+      margin-top: 5
+      padding-right: 5
+      layout:
+        type: verticalBox
+        fit-children: true
+
+    UIWidget
+      id: resizeIndicator
+      anchors.bottom: parent.bottom
+      anchors.left: parent.left
+      margin-bottom: 0
+      margin-left: 0
+      image-source: /images/ui/miniborder
+      image-smooth: false
+      focusable: false
+      margin-bottom: 0
+      margin-left: 0
+      image-source: /images/ui/miniborder
+      image-smooth: false
+      focusable: false
+    margin-bottom: 3
+    pixels-scroll: true
+    $!on:
+      width: 0
+
+BattleListMenuOption < ThickCheckBox
+  text-offset: 18 1
+  text-align: left
+  color: white
+  background-color: alpha
+  font: verdana-11px-rounded
+  padding: 3 6
+
+  $hover:
+    background-color: #ffffff1a
+
+  $disabled:
+    color: #c0c0c0ff
+
+BattleListMenuButton < UIButton
+  text-align: left
+  color: white
+  background-color: alpha
+  font: verdana-11px-rounded
+  padding: 3 6
+  margin-left: 5
+
+  $hover:
+    background-color: #ffffff1a
+
+  $disabled:
+    color: #c0c0c0ff
+
+BattleListSubMenu < PopupMenu
+  id: battleListSubMenu
+  width: 285
+
+  BattleListMenuButton
+    id: editBattleListName
+    !text: tr('Edit Name')
+
+  BattleListMenuButton
+    id: openNewBattleList
+    !text: tr('Open secondary battle list')
+
+  HorizontalSeparator
+    margin-top: 2
+    margin-bottom: 3
+
+  BattleListMenuOption
+    id: sortAscByDisplayTime
+    !text: tr('Sort Ascending by Display Time')
+
+  BattleListMenuOption
+    id: sortDescByDisplayTime
+    !text: tr('Sort Descending by Display Time')
+
+  BattleListMenuOption
+    id: sortAscByDistance
+    !text: tr('Sort Ascending by Distance')
+
+  BattleListMenuOption
+    id: sortDescByDistance
+    !text: tr('Sort Descending by Distance')
+
+  BattleListMenuOption
+    id: sortAscByHitPoints
+    !text: tr('Sort Ascending by %% Hit Points')
+
+  BattleListMenuOption
+    id: sortDescByHitPoints
+    !text: tr('Sort Descending by %% Hit Points')
+
+  BattleListMenuOption
+    id: sortAscByName
+    !text: tr('Sort Ascending by Name')
+
+  BattleListMenuOption
+    id: sortDescByName
+    !text: tr('Sort Descending by Name')
